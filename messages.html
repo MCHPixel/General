@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<body style="font-family: sans-serif; max-width: 420px; margin: 40px auto;">
+  <h3>ntfy Link Generator</h3>
+  <input id="t" placeholder="Title" value="Puppy!" style="width:100%; margin-bottom:8px; padding:6px;"><br>
+  <input id="m" placeholder="Message" value="Come here :3" style="width:100%; margin-bottom:10px; padding:6px;"><br>
+  <button onclick="gen()" style="width:100%; padding:8px; cursor:pointer;">Generate & Copy Link</button>
+  <p id="out" style="word-break: break-all; color: #333; font-size: 13px;"></p>
+  <script>
+    function gen() {
+      const u = new URL("http://10.45.0.102:9000/hooks/notify");
+      if (document.getElementById("m").value) u.searchParams.set("msg", document.getElementById("m").value);
+      if (document.getElementById("t").value) u.searchParams.set("title", document.getElementById("t").value);
+      navigator.clipboard.writeText(u.toString());
+      document.getElementById("out").innerText = "Copied: " + u.toString();
+    }
+  </script>
+</body>
+</html>
